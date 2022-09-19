@@ -1,0 +1,36 @@
+nav {
+    background: #86BBD8;
+    font-size: large;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+nav > a {
+    color: white;
+    margin: 2px;
+    padding: 10px;
+}
+
+nav > a.active {
+    font-weight: 800;
+    color: white;
+    background-color: #41658A;
+}
+
+.hover {
+    --c: #41658A; /* the color */
+    
+    color: white;
+    background: 
+      linear-gradient(90deg,#fff 50%,var(--c) 0) calc(100% - var(--_p,0%))/200% 100%,
+      linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) 100% no-repeat;
+    -webkit-background-clip: text,padding-box;
+            background-clip: text,padding-box;
+    transition: 0.5s;
+}
+
+.hover:hover {
+    --_p: 100%
+}
