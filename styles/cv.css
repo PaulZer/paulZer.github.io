@@ -1,3 +1,37 @@
 .containerCV {
     display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.containerCV > embed {
+    margin: 2em;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+.button{
+    text-align: center;
+    position: relative;
+    max-width: 150px;
+    width: 100%;
+    padding: 1em;
+    border: solid 1px #41658A;
+    border-radius: 4px;
+}
+
+.button {
+    background: #F18F01;
+    border: 0;
+    color: #e4e4e4;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+.contact form button:hover,
+.contact form button:focus {
+  background: #3952a3;
+  color: #ffffff;
+  outline: 0;
+  transition: background-color 2s ease-out;
 }
