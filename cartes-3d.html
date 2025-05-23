@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Paul Bouchillou - Contact</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+        <!-- favicons and webmanifest -->
+        <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+        <link rel="manifest" href="site.webmanifest">
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/texte_defilant.css">
+        <link rel="stylesheet" href="styles/nav.css">
+        <link rel="stylesheet" href="styles/maps3d.css">
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.176.0/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.176.0/examples/jsm/"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <img class="logo" src="images/logo_pb.png"/>
+            <nav>
+                <a href="./index.html" class="hover">Présentation</a>
+                <a href="./cv.html" class="hover">CV court</a>
+                <a href="./cv_detail.html" class="hover">CV détaillé</a>
+                <a href="./cartes-3d.html" class="hover active">Cartographie</a>
+                <a href="./contact.html" class="hover">CONTACT</a>
+            </nav>
+        </header>
+        <div class="flex-title">
+            <div class="flex-h1">
+                <h1>Paul BOUCHILLOU</h1>
+            </div>
+            <div class="flex-info">
+                <div class="info">
+                    <ul class="lh-15 mt-0 mb-0">
+                        <li><i class="fa fa-address-card"></i>&nbsp;&nbsp;28 ans, +6 ans d'expérience pro</li>
+                        <li><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;Lyon</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <main>
+            
+            <div class="containerMaps3D">  
+                    <h2>Création de cartes 3D</h2>
+                    <p>Passionné de cartographie, j'ai développé mon propre outil pour générer des modèles en 3D du territoire français au format STL, optimisés pour l'impression 3D et l'affichage dans les moteurs de rendu 3D.</p>
+                    <div id="threePreview"style="width:100%;height:70vh;"></div>
+                    <h3>Sommaire</h3>
+                    <ul>
+                        <li><a class="hoverblue" href="#algo">L'outil de génération</a></li>
+                        <li><a class="hoverblue" href="#usages">Usages</a></li>
+                        <li><a class="hoverblue" href="#impressions-3d">Quelques impressions 3D</a></li>
+                    </ul>
+                    <div class="roundImgContainer">
+                        <div class="column">
+                            <img src="images/cartes3d/preview_detail_bat3d.png" alt="Image 1" class="round-image">
+                            <p>Objets 3D</p>
+                        </div>
+                        <div class="column">
+                            <img src="images/cartes3d/lyon3d_bat_print1080_1080.jpg" alt="Image 2" class="round-image">
+                            <p>Villes</p>
+                        </div>
+                        <div class="column">
+                            <img src="images/cartes3d/corse_print1080_1080.jpg" alt="Image 3" class="round-image">
+                            <p>Montagnes</p>
+                        </div>
+                    </div>
+                    <h3 id="algo">L'outil de génération</h3>
+                    <p>Mon algorithme, écrit en PHP, transforme les données en OpenData fournies par l'IGN pour génèrer des objets 3D.</p>
+                    <p>Ces cartes peuvent être utilisées pour des projets de maquettes, de visualisation de données, d'urbanisme, ou même pour des jeux vidéo.</p>
+                    <p>L'outil est conçu pour être utilisé sur une application web, en cours de construction, pour permettre à chacun de créer ses propres cartes.</p>
+                    <h3>Quelques impressions 3D</h3>
+
+                    <p>Voici quelques cartes que j'ai réalisées :</p>
+                    <div class="map3dPreview">
+                        <figure>
+                            <img class="map3d" src="images/cartes3d/corsegr20.jpg" alt="Carte 3D du GR20 Corse" />
+                            <figcaption style="text-align: center;">La corse imprimée en 3D avec le tracé du sentier GR20 en rouge.</figcaption>
+                        </figure>
+                    </div> 
+
+            </div>
+        </main>
+        <footer>
+            Paul Bouchillou - 2022-2025
+        </footer>
+        <script type="module">
+            import * as THREE from  'https://cdn.jsdelivr.net/npm/three@0.176.0/build/three.module.js';
+            import { STLLoader } from 'https://unpkg.com/three@0.154.0/examples/jsm/loaders/STLLoader.js';
+
+            var container = document.getElementById('threePreview');
+
+            // a scene
+
+            var scene = new THREE.Scene();
+                scene.background = new THREE.Color( 'gainsboro' );
+
+
+            // camera that uses the container's size
+
+            var camera = new THREE.PerspectiveCamera( 30, container.clientWidth/ container.clientHeight );
+                camera.position.set( 2, 5, 10 );
+                camera.lookAt( scene.position );
+
+
+            // renderer that uses the container's size and is inserted in it
+
+            var renderer = new THREE.WebGLRenderer( {antialias: true} );
+                renderer.setSize( container.clientWidth-16, container.clientHeight-16 );
+                renderer.setAnimationLoop( animationLoop );
+                container.appendChild( renderer.domElement );
+            
+            var layers = {
+            terrain: {
+                material: new THREE.MeshStandardMaterial( { color: '#353e39', side: THREE.DoubleSide } )
+            },
+            surface_hydrographique: {
+                material: new THREE.MeshPhongMaterial( { color: '#3d4d6c', side: THREE.DoubleSide } )
+            },
+            batiment: {
+                material: new THREE.MeshPhongMaterial( { color: '#858585', side: THREE.DoubleSide, emissive: '#272626' } )
+            },
+            terrain_de_sport: {
+                material: new THREE.MeshPhongMaterial( { color: '#8e5a56', side: THREE.DoubleSide } )
+            },
+            zone_de_vegetation: {
+                material: new THREE.MeshPhongMaterial( { color: '#44633d', side: THREE.DoubleSide } )
+            },
+            troncon_de_route: {
+                material: new THREE.MeshPhongMaterial( { color: '#93442b', side: THREE.DoubleSide } )
+            },
+            troncon_de_voie_ferree: {
+                material: new THREE.MeshPhongMaterial( { color: '#955e2a', side: THREE.DoubleSide } )
+            },
+        };
+            // Load terrain layer first
+            loadMeshFromSTLFile(Object.keys(layers)[0], Object.values(Object.values(layers)[0])[0], () => {
+                for (let [layerId, layer] of Object.entries(layers)) {
+                    if(layerId !== 'terrain') {
+                        // then load other layers
+                        loadMeshFromSTLFile(layerId, layer.material);
+                    }
+                }
+            });   
+
+            // various stuff, not interesting
+
+            var ambientLight = new THREE.AmbientLight( 'white', 0.5 );
+                scene.add( ambientLight );
+
+            var light = new THREE.DirectionalLight( 'white', 0.5 );
+                light.position.set( 1, 1, 1 );
+                scene.add( light );
+
+            scene.add( new THREE.AxesHelper(2) );
+
+
+            function animationLoop( t )
+            {
+                light.position.copy( camera.position );
+                renderer.render( scene, camera );
+            }
+
+            window.addEventListener( 'resize', () => {
+                onWindowResize();s
+            });
+
+            function onWindowResize() {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize( container.clientWidth, container.clientHeight );
+            }
+
+
+            // LOADING STL FILES
+            function loadMeshFromSTLFile(layerId, material, callback){
+                console.log('Loading '+layerId+'...');
+                var loader = new STLLoader();
+                loader.load( `/files/stl/Lyon-7couleursbatiment${layerId}.stl`,  ( geometry ) => {
+                if(geometry.attributes.normal.count === 0) {
+                    //empty geometry
+                    return;
+                }
+
+                let mesh = new THREE.Mesh( geometry, material );
+
+                this.meshList[layerId] = mesh;
+
+                // TODO IMPORTANT for preventing black stripes on model :
+                // models need to be scaled down
+                // otherwise parts of model that are too far from camera are buggy
+                mesh.scale.set(1/this.scaleFactor, 1/this.scaleFactor, 1/this.scaleFactor);
+                mesh.geometry.computeBoundingBox();
+
+                //model need to be rotated because vertical axis is Y in THREE
+                mesh.rotation.x = - Math.PI / 2;
+
+                mesh.castShadow = true;
+                mesh.receiveShadow = true;
+                
+                if(layerId === 'terrain') {
+                    this.terrainOrigCenterPoint = this.getCenterPoint(mesh);
+                } 
+
+                if(layerId === 'terrain') {
+                    mesh.geometry.center();
+                    this.centerPoint = this.getCenterPoint(this.meshList['terrain']);
+                    this.camera.position.set( this.centerPoint.x, this.centerPoint.y, this.centerPoint.z + 0.01 );
+                    this.controls.target.set( this.centerPoint.x, this.centerPoint.y, this.centerPoint.z);
+                    this.camera.lookAt( this.centerPoint );
+                }
+
+                if(layerId !== 'terrain') {
+                    mesh.position.x -= this.terrainOrigCenterPoint.x; 
+                    mesh.position.y -= this.terrainOrigCenterPoint.y; 
+                    mesh.position.z -= this.terrainOrigCenterPoint.z; 
+                }
+
+                this.params[layerId+'Visibility'] = true;
+                this.params[layerId+'Height'] = mesh.position.y;
+
+                this.visibilityOptionsFolder.add( this.params, layerId+'Visibility', true, false, true).onChange( () => {
+                    this.toggleLayerVisibility(layerId);
+                } );
+
+                this.scene.add( mesh );
+
+                this.layersHeightOptionsFolder.add( this.params, layerId+'Height', -20, 20, 0.1).onChange( (value) => {
+                    this.changeLayerHeight(layerId, (value / this.scaleFactor) - this.terrainOrigCenterPoint.y);
+                } );
+
+                if(callback) {
+                    callback();
+                }
+
+            } );
+        }
+
+        </script>
+    </body>
+</html>
