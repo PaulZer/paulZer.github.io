@@ -9,8 +9,12 @@ nav {
 
 nav > a {
     color: white;
-    margin: 2px;
+    margin: 10px;
     padding: 10px;
+}
+
+nav > a:first {
+    margin-left: 40px;
 }
 
 nav > a.active {
