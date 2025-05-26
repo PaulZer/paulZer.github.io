@@ -49,22 +49,51 @@
             </div>
         </div>
         <main>
-            
-            <div class="containerMaps3D">  
-                    <h2>Création de cartes 3D</h2>
-                    <p>Passionné de cartographie, j'ai développé mon propre outil pour générer des modèles en 3D du territoire français au format STL, optimisés pour l'impression 3D et l'affichage dans les moteurs de rendu 3D.</p>
-                    <div id="threePreview"style="width:100%;height:70vh;"></div>
-                    <h3>Sommaire</h3>
-                    <ul>
-                        <li><a class="hoverblue" href="#algo">L'outil de génération</a></li>
-                        <li><a class="hoverblue" href="#usages">Usages</a></li>
-                        <li><a class="hoverblue" href="#impressions-3d">Quelques impressions 3D</a></li>
-                    </ul>
-                    <div class="roundImgContainer">
-                        <div class="column">
-                            <img src="images/cartes3d/preview_detail_bat3d.png" alt="Image 1" class="round-image">
-                            <p>Objets 3D</p>
+            <div class="containerMaps3D">
+                <div class="bg-light p-2">
+                    <h2 class="bigh2 text-black">Création de cartes 3D</h2>
+                    <p>Passionné de cartographie, j'ai développé mon propre outil de génération de modèles du territoire français, optimisés pour l'impression 3D, dont voici un example de la ville de Lyon avec le moteur de rendu THREE.js.</p>
+                    <div id="threePreview"style="width:100%;height:60vh;"></div>
+                    <p class="mb-2">Vous pouvez zoomer et faire tourner la carte avec votre souris. La carte peut mettre quelques secondes à charger avant de s'afficher.</p>
+                    
+                    <h3 id="algo">L'outil de génération</h3>
+                    <p>Mon algorithme, écrit en <strong>PHP</strong>, transforme les données en OpenData fournies par l'<strong><a class="hoverblue" target="_blank" href="https://www.ign.fr">Institut national de l'information géographique et forestière</a></strong> (IGN) pour génèrer des objets 3D au format STL, optimisés pour l'impression 3D et les moteurs de rendu.</p>
+                    <p>
+                        Il se base sur les données d'altimétrie de la <strong><a class="hoverblue" href="https://geoservices.ign.fr/bdalti" target="_blank">BD Alti</a></strong> 
+                        et du <strong><a class="hoverblue" href="https://geoservices.ign.fr/rgealti" target="_blank">RGE Alti</a></strong>, 
+                        décrivant un maillage de la surface du sol jusqu'à 1M de résolution, et des données vectorielles de la <strong><a class="hoverblue" href="https://geoservices.ign.fr/bdtopo" target="_blank">BD Topo</a></strong> pour le sursol : bâtiments, routes, hydrographie, zones de végétation, et plus encore.
+                    </p>
+                    <p>Ces dernières sont extraites grâce à <strong>PostGIS</strong>, extension du SGBD <strong>PostgreSQL</strong>, et de ses librairies <strong>GDAL</strong> et <strong>GEOS</strong>, qui activent la manipulation d'informations géographiques sous forme de géométries (points, lignes, polygones...).</p>
+                    <p class="mb-2">L'outil est conçu pour être utilisé sur une application web, en cours de construction, pour permettre à chacun de créer ses propres cartes.
+
+                    </p>
+                    <h3>Quelques impressions 3D</h3>
+
+                    <p>Voici quelques cartes imprimées en 3D, et dont les modèles ont été générés avec mon outil :</p>
+                    <style>
+                    
+                    </style>
+                    <div class="printPhotoContainer mb-2">
+                        <div>
+                            <img class="map3d" src="images/cartes3d/lyon-7couleurs.jpg" alt="Carte 3D de Lyon">
+                            <p style="text-align:center;max-width:380px;">Lyon imprimé en 3D avec 7 couleurs. Cette impression est issue du modèle présenté en haut de cette page.</p>
                         </div>
+                        <div>
+                            <img class="map3d" src="images/cartes3d/corsegr20.jpg" alt="Carte 3D du GR20 Corse" />
+                            <p style="text-align:center;max-width:300px;">
+                                Carte 3D du GR20 Corse. Ce modèle a remporté un prix dans un concours de design 3D sur le site 
+                                <strong><a href="https://makerworld.com/fr/%40user_2778746497" target="_blank" class="hoverblue">MakerWorld</a></strong>.
+                            </p>
+                        </div>
+                    </div>
+                    <p>Pour finir, voici le timelapse de l"impression de la carte de Lyon en 7 couleurs enregistrée par l'imprimante 3D :</p>
+                    <div class="mb-3" style="display: flex;justify-content: center;">
+                        <video controls width="100%" style="display: flex; justify-content: center;max-width: 800px;">
+                            <source src="files/lyon-7couleurs-timlapse.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <h2 class="text-center"><p>Retrouvez toutes mes créations sur le site <strong><a href="https://makerworld.com/fr/%40user_2778746497" target="_blank" class="hoverblue">MakerWorld</a></strong></p></h2>
+                    <div class="roundImgContainer">
                         <div class="column">
                             <img src="images/cartes3d/lyon3d_bat_print1080_1080.jpg" alt="Image 2" class="round-image">
                             <p>Villes</p>
@@ -73,21 +102,12 @@
                             <img src="images/cartes3d/corse_print1080_1080.jpg" alt="Image 3" class="round-image">
                             <p>Montagnes</p>
                         </div>
+                        <div class="column">
+                            <img src="images/cartes3d/guadeloupe_preview.png" alt="Image 1" class="round-image">
+                            <p>Outre-mer</p>
+                        </div>
                     </div>
-                    <h3 id="algo">L'outil de génération</h3>
-                    <p>Mon algorithme, écrit en PHP, transforme les données en OpenData fournies par l'IGN pour génèrer des objets 3D.</p>
-                    <p>Ces cartes peuvent être utilisées pour des projets de maquettes, de visualisation de données, d'urbanisme, ou même pour des jeux vidéo.</p>
-                    <p>L'outil est conçu pour être utilisé sur une application web, en cours de construction, pour permettre à chacun de créer ses propres cartes.</p>
-                    <h3>Quelques impressions 3D</h3>
-
-                    <p>Voici quelques cartes que j'ai réalisées :</p>
-                    <div class="map3dPreview">
-                        <figure>
-                            <img class="map3d" src="images/cartes3d/corsegr20.jpg" alt="Carte 3D du GR20 Corse" />
-                            <figcaption style="text-align: center;">La corse imprimée en 3D avec le tracé du sentier GR20 en rouge.</figcaption>
-                        </figure>
-                    </div> 
-
+                </div>
             </div>
         </main>
         <footer>
@@ -96,82 +116,108 @@
         <script type="module">
             import * as THREE from  'https://cdn.jsdelivr.net/npm/three@0.176.0/build/three.module.js';
             import { STLLoader } from 'https://unpkg.com/three@0.154.0/examples/jsm/loaders/STLLoader.js';
+            import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.124/examples/jsm/controls/OrbitControls.js';
 
             var container = document.getElementById('threePreview');
 
             // a scene
-
             var scene = new THREE.Scene();
-                scene.background = new THREE.Color( 'gainsboro' );
+                scene.background = new THREE.Color( '#8DA7BE' );
 
 
             // camera that uses the container's size
-
             var camera = new THREE.PerspectiveCamera( 30, container.clientWidth/ container.clientHeight );
                 camera.position.set( 2, 5, 10 );
                 camera.lookAt( scene.position );
 
 
             // renderer that uses the container's size and is inserted in it
-
             var renderer = new THREE.WebGLRenderer( {antialias: true} );
                 renderer.setSize( container.clientWidth-16, container.clientHeight-16 );
-                renderer.setAnimationLoop( animationLoop );
                 container.appendChild( renderer.domElement );
             
+            // layers 
             var layers = {
-            terrain: {
-                material: new THREE.MeshStandardMaterial( { color: '#353e39', side: THREE.DoubleSide } )
-            },
-            surface_hydrographique: {
-                material: new THREE.MeshPhongMaterial( { color: '#3d4d6c', side: THREE.DoubleSide } )
-            },
-            batiment: {
-                material: new THREE.MeshPhongMaterial( { color: '#858585', side: THREE.DoubleSide, emissive: '#272626' } )
-            },
-            terrain_de_sport: {
-                material: new THREE.MeshPhongMaterial( { color: '#8e5a56', side: THREE.DoubleSide } )
-            },
-            zone_de_vegetation: {
-                material: new THREE.MeshPhongMaterial( { color: '#44633d', side: THREE.DoubleSide } )
-            },
-            troncon_de_route: {
-                material: new THREE.MeshPhongMaterial( { color: '#93442b', side: THREE.DoubleSide } )
-            },
-            troncon_de_voie_ferree: {
-                material: new THREE.MeshPhongMaterial( { color: '#955e2a', side: THREE.DoubleSide } )
-            },
-        };
+                terrain: {
+                    material: new THREE.MeshStandardMaterial( { color: '#353e39', side: THREE.DoubleSide } )
+                },
+                surface_hydrographique: {
+                    material: new THREE.MeshPhongMaterial( { color: '#3d4d6c', side: THREE.DoubleSide } )
+                },
+                batiment: {
+                    material: new THREE.MeshPhongMaterial( { color: '#858585', side: THREE.DoubleSide, emissive: '#272626' } )
+                },
+                terrain_de_sport: {
+                    material: new THREE.MeshPhongMaterial( { color: '#8e5a56', side: THREE.DoubleSide } )
+                },
+                zone_de_vegetation: {
+                    material: new THREE.MeshPhongMaterial( { color: '#44633d', side: THREE.DoubleSide } )
+                },
+                troncon_de_route: {
+                    material: new THREE.MeshPhongMaterial( { color: '#93442b', side: THREE.DoubleSide } )
+                },
+                troncon_de_voie_ferree: {
+                    material: new THREE.MeshPhongMaterial( { color: '#5f1918', side: THREE.DoubleSide } )
+                },
+            };
+
+            var meshList = [];
+            var terrainOrigCenterPoint = null;
+            var centerPoint = null;
+            var scaleFactor = 1;
+            var theta = 0;
+            var radius = 0.1;
+
             // Load terrain layer first
             loadMeshFromSTLFile(Object.keys(layers)[0], Object.values(Object.values(layers)[0])[0], () => {
                 for (let [layerId, layer] of Object.entries(layers)) {
                     if(layerId !== 'terrain') {
                         // then load other layers
-                        loadMeshFromSTLFile(layerId, layer.material);
+                        //loadMeshFromSTLFile(layerId, layer.material);
                     }
                 }
             });   
 
             // various stuff, not interesting
 
-            var ambientLight = new THREE.AmbientLight( 'white', 0.5 );
-                scene.add( ambientLight );
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+            scene.add(ambientLight);
 
-            var light = new THREE.DirectionalLight( 'white', 0.5 );
-                light.position.set( 1, 1, 1 );
-                scene.add( light );
+            const light = new THREE.DirectionalLight( '#ffffeb', 3 );
+            light.position.set(  0, 1,  0.5);
+            /*light.castShadow = true;
+            light.shadow.camera.top = 2;
+            light.shadow.camera.bottom = - 2;
+            light.shadow.camera.left = - 2;
+            light.shadow.camera.right = 2;
+            light.shadow.camera.near = 0.1;
+            light.shadow.camera.far = 40;
+            light.shadow.bias = -0.005;*/
+
+            scene.add( light );
 
             scene.add( new THREE.AxesHelper(2) );
 
+            var controls = new OrbitControls( camera, renderer.domElement );
+            controls.target.set( 1, 1, 1);
+            controls.enableDamping = true;
 
-            function animationLoop( t )
-            {
-                light.position.copy( camera.position );
+            animate();
+
+            function animate() {
+
+                requestAnimationFrame( () => {
+                    if(renderer) {
+                        animate();
+                    }
+                } );
+
+                controls.update();
                 renderer.render( scene, camera );
             }
 
             window.addEventListener( 'resize', () => {
-                onWindowResize();s
+                onWindowResize();
             });
 
             function onWindowResize() {
@@ -186,65 +232,70 @@
             function loadMeshFromSTLFile(layerId, material, callback){
                 console.log('Loading '+layerId+'...');
                 var loader = new STLLoader();
-                loader.load( `/files/stl/Lyon-7couleursbatiment${layerId}.stl`,  ( geometry ) => {
-                if(geometry.attributes.normal.count === 0) {
-                    //empty geometry
-                    return;
-                }
+                loader.load( `https://paulzer.github.io/files/stl/lyon-centre-${layerId}.stl`,  ( geometry ) => {
+                    if(geometry.attributes.normal.count === 0) {
+                        //empty geometry
+                        return;
+                    }
 
-                let mesh = new THREE.Mesh( geometry, material );
+                    let mesh = new THREE.Mesh( geometry, material );
 
-                this.meshList[layerId] = mesh;
+                    meshList[layerId] = mesh;
 
-                // TODO IMPORTANT for preventing black stripes on model :
-                // models need to be scaled down
-                // otherwise parts of model that are too far from camera are buggy
-                mesh.scale.set(1/this.scaleFactor, 1/this.scaleFactor, 1/this.scaleFactor);
-                mesh.geometry.computeBoundingBox();
+                    // TODO IMPORTANT for preventing black stripes on model :
+                    // models need to be scaled down
+                    // otherwise parts of model that are too far from camera are buggy
+                    mesh.scale.set(1/scaleFactor, 1/scaleFactor, 1/scaleFactor);
+                    mesh.geometry.computeBoundingBox();
 
-                //model need to be rotated because vertical axis is Y in THREE
-                mesh.rotation.x = - Math.PI / 2;
+                    //model need to be rotated because vertical axis is Y in THREE
+                    mesh.rotation.x = - Math.PI / 2;
 
-                mesh.castShadow = true;
-                mesh.receiveShadow = true;
-                
-                if(layerId === 'terrain') {
-                    this.terrainOrigCenterPoint = this.getCenterPoint(mesh);
-                } 
+                    mesh.castShadow = true;
+                    mesh.receiveShadow = true;
+                    
+                    if(layerId === 'terrain') {
+                        terrainOrigCenterPoint = getCenterPoint(mesh);
+                    } 
 
-                if(layerId === 'terrain') {
-                    mesh.geometry.center();
-                    this.centerPoint = this.getCenterPoint(this.meshList['terrain']);
-                    this.camera.position.set( this.centerPoint.x, this.centerPoint.y, this.centerPoint.z + 0.01 );
-                    this.controls.target.set( this.centerPoint.x, this.centerPoint.y, this.centerPoint.z);
-                    this.camera.lookAt( this.centerPoint );
-                }
+                    if(layerId === 'terrain') {
+                        mesh.geometry.center();
+                        centerPoint = getCenterPoint(meshList['terrain']);
+                        camera.position.set( centerPoint.x, centerPoint.y + 25, centerPoint.z  );
+                        controls.target.set( centerPoint.x, centerPoint.y, centerPoint.z);
 
-                if(layerId !== 'terrain') {
-                    mesh.position.x -= this.terrainOrigCenterPoint.x; 
-                    mesh.position.y -= this.terrainOrigCenterPoint.y; 
-                    mesh.position.z -= this.terrainOrigCenterPoint.z; 
-                }
+                        camera.lookAt( centerPoint );
+                    }
 
-                this.params[layerId+'Visibility'] = true;
-                this.params[layerId+'Height'] = mesh.position.y;
+                    if(layerId !== 'terrain') {
+                        mesh.position.x -= terrainOrigCenterPoint.x; 
+                        mesh.position.y -= terrainOrigCenterPoint.y; 
+                        mesh.position.z -= terrainOrigCenterPoint.z; 
+                    }
 
-                this.visibilityOptionsFolder.add( this.params, layerId+'Visibility', true, false, true).onChange( () => {
-                    this.toggleLayerVisibility(layerId);
+                    scene.add( mesh );
+
+
+                    if(callback) {
+                        callback();
+                    }
+
                 } );
+            }
 
-                this.scene.add( mesh );
+            function getCenterPoint(mesh) {
+                var middle = new THREE.Vector3();
+                var geometry = mesh.geometry;
 
-                this.layersHeightOptionsFolder.add( this.params, layerId+'Height', -20, 20, 0.1).onChange( (value) => {
-                    this.changeLayerHeight(layerId, (value / this.scaleFactor) - this.terrainOrigCenterPoint.y);
-                } );
+                geometry.computeBoundingBox();
 
-                if(callback) {
-                    callback();
-                }
+                middle.x = (geometry.boundingBox.max.x + geometry.boundingBox.min.x) / 2;
+                middle.y = (geometry.boundingBox.max.y + geometry.boundingBox.min.y) / 2;
+                middle.z = (geometry.boundingBox.max.z + geometry.boundingBox.min.z) / 2;
 
-            } );
-        }
+                mesh.localToWorld(middle);
+                return middle;
+            }
 
         </script>
     </body>
