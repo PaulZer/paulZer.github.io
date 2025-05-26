@@ -232,7 +232,7 @@
             function loadMeshFromSTLFile(layerId, material, callback){
                 console.log('Loading '+layerId+'...');
                 var loader = new STLLoader();
-                loader.load( `https://paulzer.github.io/files/stl/Lyon-centre-${layerId}.stl`,  ( geometry ) => {
+                loader.load( `https://paulzer.github.io/files/stl/lyon-centre-${layerId}.stl`,  ( geometry ) => {
                     if(geometry.attributes.normal.count === 0) {
                         //empty geometry
                         return;
