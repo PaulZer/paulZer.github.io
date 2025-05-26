@@ -56,8 +56,6 @@ a {
 }
 
 a.hoverblue {
-    padding: 10px;
-    margin: 5px;
     color: #41658a;
     text-decoration: underline;
     text-decoration-thickness: 1px;
@@ -179,6 +177,32 @@ h2 {
 
 .mb-0 {
     margin-bottom: 0;
+}
+
+.mb-2 {
+    margin-bottom: 2em;
+}
+
+
+.p-2 {
+    padding: 2em;
+}
+
+.bg-light {
+    background-color: #CDE6F5;
+    border-radius: 15px;
+}
+
+.text-black {
+    color: black;
+}   
+
+.bigh2 {
+    font-size: 2.5em;
+}
+
+.text-center {
+    text-align: center;
 }
 
 footer {
